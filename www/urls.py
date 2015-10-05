@@ -146,7 +146,8 @@ def register_user():
     user = User.find_first('where email=?', email)
     if user:
         raise APIError('register:failed', 'email', 'Email is already in use.')
-    user = User(name=name, email=email, password=password, image='http://www.gravatar.com/avatar/%s?d=mm&s=120' % hashlib.md5(email).hexdigest())
+    #user = User(name=name, email=email, password=password, image='http://www.gravatar.com/avatar/%s?d=mm&s=120' % hashlib.md5(email).hexdigest())
+    user = User(name=name, email=email, password=password, image='')
     user.insert()
     # make session cookie:
     cookie = make_signed_cookie(user.id, user.password, None)
